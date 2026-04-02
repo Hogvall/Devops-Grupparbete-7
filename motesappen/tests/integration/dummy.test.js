@@ -7,7 +7,7 @@ describe("Description", () => {
   });
 
   test("Test description", () => {
-   
+    expect(1).toEqual(1);
   });
   
 });
