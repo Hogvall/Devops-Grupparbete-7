@@ -1,26 +1,24 @@
-name: Gemini AI Code Review
+name: Gemini AI Code Reviewer
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: read
   pull-requests: write
 
 jobs:
-  review:
+  gemini-code-review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Gemini Code Review
-        uses: fluxninja/gemini-pr-reviewer@main
+        - name: Run Gemini AI Reviewer
+        uses: truongnh1992/gemini-ai-code-reviewer@v9.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          
-          GEMINI_MODEL: "gemini-1.5-pro"
+        with:
+          gemini_model: "gemini-3.1-pro"
