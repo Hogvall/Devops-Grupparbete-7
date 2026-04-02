@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-        - name: Run Gemini AI Reviewer
+        
+      - name: Run Gemini AI Reviewer
         uses: truongnh1992/gemini-ai-code-reviewer@v9.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
