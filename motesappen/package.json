@@ -1,32 +1,25 @@
 {
   "name": "motesappen",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "test": "vitest run --coverage && npm run test:e2e",
     "test:e2e": "vite build && npx playwright test",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview",
+    "lint": "eslint src/",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.101.1",
-    "next": "16.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@supabase/supabase-js": "^2.101.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@playwright/test": "^1.59.1",
-    "@tailwindcss/postcss": "^4",
     "@vitest/coverage-v8": "^4.1.2",
     "eslint": "^10.1.0",
-    "eslint-config-next": "16.2.2",
     "globals": "^17.4.0",
     "jsdom": "^29.0.1",
-    "tailwindcss": "^4",
     "vite": "^8.0.3",
     "vitest": "^4.1.2"
   }
