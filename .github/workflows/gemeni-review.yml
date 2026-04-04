@@ -15,6 +15,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         
+      - name: Debug secrets
+        run: |
+          echo "GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'"
+          echo "GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}'"
+
       - name: Run Gemini AI Reviewer
         uses: truongnh1992/gemini-ai-code-reviewer@v9.2.1
         env:
