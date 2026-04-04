@@ -25,17 +25,13 @@ jobs:
           cache-dependency-path: motesappen/package-lock.json
 
       - name: Install dependencies
-        working-directory: motesappen
         run: npm install
 
       - name: Install Playwright browsers
-        working-directory: motesappen
         run: npx playwright install --with-deps chromium
 
       - name: Run lint
-        working-directory: motesappen
         run: npm run lint
 
       - name: Run tests
-        working-directory: motesappen
         run: npm run test
