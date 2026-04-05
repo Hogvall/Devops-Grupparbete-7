@@ -1,34 +1,24 @@
-name: Gemini PR Review
+name: Gemini AI Code Reviewer
 
 on:
   issue_comment:
     types: [created]
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
 
 jobs:
-  review:
-    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/review')
+  gemini-code-review:
+    if: github.event.issue.pull_request != ''
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Run Gemini AI Reviewer
+        uses: truongnh1992/gemini-ai-code-reviewer@v9.2.1
         with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: pip install google-generativeai requests
-
-      - name: Run Gemini reviewer
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.issue.number }}
-          REPO: ${{ github.repository }}
-        run: python .github/scripts/gemini_review.py
+          gemini_model: "gemini-3.1-pro"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
