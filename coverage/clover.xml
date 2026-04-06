@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1775290564985" clover="3.2.0">
-  <project timestamp="1775290564985" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1775488081787" clover="3.2.0">
+  <project timestamp="1775488081787" name="All files">
+    <metrics statements="46" coveredstatements="31" conditionals="6" coveredconditionals="4" methods="12" coveredmethods="9" elements="64" coveredelements="44" complexity="0" loc="46" ncloc="46" packages="1" files="2" classes="2"/>
+    <file name="meeting-logic.js" path="C:\Users\aesof\Medieinstitutet\04-Devops och testning\Devops-Grupparbete-7\scripts\meeting-logic.js">
+      <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="8"/>
+      <line num="1" count="2" type="stmt"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="6" count="2" type="stmt"/>
+      <line num="9" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="34" count="1" type="stmt"/>
+      <line num="39" count="2" type="stmt"/>
+      <line num="49" count="2" type="stmt"/>
+      <line num="54" count="2" type="stmt"/>
+      <line num="59" count="2" type="stmt"/>
+    </file>
+    <file name="meeting-view.js" path="C:\Users\aesof\Medieinstitutet\04-Devops och testning\Devops-Grupparbete-7\scripts\meeting-view.js">
+      <metrics statements="32" coveredstatements="17" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="16" count="0" type="stmt"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="18" count="0" type="stmt"/>
+      <line num="19" count="0" type="stmt"/>
+      <line num="22" count="0" type="stmt"/>
+      <line num="23" count="0" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="25" count="0" type="stmt"/>
+      <line num="29" count="0" type="stmt"/>
+      <line num="34" count="1" type="stmt"/>
+      <line num="35" count="1" type="stmt"/>
+      <line num="37" count="1" type="stmt"/>
+      <line num="39" count="1" type="stmt"/>
+      <line num="40" count="1" type="stmt"/>
+      <line num="42" count="1" type="stmt"/>
+      <line num="43" count="1" type="stmt"/>
+      <line num="45" count="1" type="stmt"/>
+      <line num="46" count="1" type="stmt"/>
+      <line num="48" count="1" type="stmt"/>
+      <line num="49" count="1" type="stmt"/>
+      <line num="51" count="1" type="stmt"/>
+      <line num="52" count="1" type="stmt"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="55" count="1" type="stmt"/>
+      <line num="57" count="1" type="stmt"/>
+    </file>
   </project>
 </coverage>

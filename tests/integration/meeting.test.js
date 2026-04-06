@@ -3,7 +3,7 @@ import { renderMeetingDom } from "../../scripts/meeting-view.js";
 import { getMeeting, getParticipantData, addParticipantToApi, deleteParticipantFromApi } from "../../scripts/meeting-logic.js";
 
 // Mock global fetch
-global.fetch = vi.fn();
+globalThis.fetch = vi.fn();
 
 beforeEach(() => {
   vi.clearAllMocks();
