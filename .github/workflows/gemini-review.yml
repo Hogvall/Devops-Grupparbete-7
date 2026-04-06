@@ -5,20 +5,29 @@ on:
     types: [created]
 
 permissions:
-  contents: write
   pull-requests: write
+  contents: read
 
 jobs:
   gemini-code-review:
-    if: github.event.issue.pull_request != ''
+    name: Run AI Code Review
     runs-on: ubuntu-latest
+    
+    if: >
+      github.event.issue.pull_request && 
+      contains(github.event.comment.body, '/gemini-review')
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Run Gemini AI Reviewer
-        uses: truongnh1992/gemini-ai-code-reviewer@v9.2.1
         with:
-          gemini_model: "gemini-3.1-pro"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          fetch-depth: 0 
+
+      - name: Run Gemini AI Code Reviewer
+        uses: truongnh1992/gemini-ai-code-reviewer@v9.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          
+          GEMINI_MODEL: "gemini-3-flash-preview"
