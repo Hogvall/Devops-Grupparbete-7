@@ -12,7 +12,6 @@ jobs:
   gemini-code-review:
     name: Run AI Code Review
     runs-on: ubuntu-latest
-    
     if: >
       github.event.issue.pull_request && 
       contains(github.event.comment.body, '/gemini-review')
@@ -23,9 +22,9 @@ jobs:
         with:
           fetch-depth: 0 
 
-- name: Run Gemini AI Code Reviewer
+      - name: Run Gemini AI Code Reviewer
         uses: truongnh1992/gemini-ai-code-reviewer@v9.2.1
-        env:
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: "gemini-3-flash-preview"
