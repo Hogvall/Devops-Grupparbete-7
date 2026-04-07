@@ -39,6 +39,7 @@ export function renderMeetingDom(meeting) {
 
     const img = document.createElement('img');
     img.src = m.image;
+    img.alt = m.title;
 
     const title = document.createElement('h3');
     title.textContent = m.title;
