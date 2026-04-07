@@ -35,7 +35,7 @@ export function renderMeetingDom(meeting) {
     const m = meeting?.[0];
     if (!m) return;
 
-    document.title += " | " + m.title;
+    document.title = "Mötesappen | " + m.title;
 
     const img = document.createElement('img');
     img.src = m.image;
