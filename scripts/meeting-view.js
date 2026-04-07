@@ -32,7 +32,8 @@ export async function renderParticipantDiv(meetingId) {
 //Render full meeting DOM
 export function renderMeetingDom(meeting) {
     const main = document.getElementById('app');
-    const m = meeting[0];
+    const m = meeting?.[0];
+    if (!m) return;
 
     document.title += " | " + m.title;
 
