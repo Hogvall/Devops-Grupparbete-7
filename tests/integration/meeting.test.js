@@ -136,6 +136,6 @@ describe("renderMeetingDom", () => {
     expect(document.querySelector("#participantDiv")).toBeTruthy();
     expect(document.body.textContent).toContain("Category: Health");
     expect(document.body.textContent).toContain("Relax");
-    expect(document.body.textContent).toContain("January 1, 2025");
+    expect(document.body.textContent).toContain("1 January 2025");
   });
 });
