@@ -22,5 +22,23 @@
     "jsdom": "^29.0.1",
     "vite": "^8.0.3",
     "vitest": "^4.1.2"
-  }
+  },
+  "description": "- Skapa/redigera profil -> **Dante**\r - Skapa möte -> **Joel**\r - Söka möte -> **Shakur**\r - Visa enskilt möte/Anmäla sig till möte -> **Sofie**\r - \"Min kalender\" samt Loginfunktion -> **Marcus**",
+  "main": "playwright.config.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hogvall/Devops-Grupparbete-7.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Hogvall/Devops-Grupparbete-7/issues"
+  },
+  "homepage": "https://github.com/Hogvall/Devops-Grupparbete-7#readme"
 }
