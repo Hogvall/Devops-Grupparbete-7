@@ -3,11 +3,13 @@ import { isUserSignedUp, formatMeetingDate, addParticipantToApi, deleteParticipa
 //Mock a logged in user
 const currentUser = "b2b2b2b2-b2b2-b2b2-b2b2-b2b2b2b2b2b2";
 
+let max_participants = "";
+
 //Render participant info bit
 export async function renderParticipantDiv(meetingId) {
     const participants = await getParticipantData(meetingId);
     const participantDiv = document.getElementById('participantDiv');
-    participantDiv.innerHTML = `<div>Anmälda: ${participants.length}</div>`;
+    participantDiv.innerHTML = `<div>Anmälda: ${participants.length} / ${max_participants}</div>`;
 
     const button = document.createElement('button');
     const signedUp = isUserSignedUp(participants, currentUser);
@@ -18,15 +20,18 @@ export async function renderParticipantDiv(meetingId) {
             await deleteParticipantFromApi(currentUser, meetingId);
             renderParticipantDiv(meetingId);
         });
-    } else {
+        participantDiv.append(button);
+    } else if (participants.length < max_participants) {
         button.textContent = "Anmäl här";
         button.addEventListener("click", async () => {
             await addParticipantToApi(currentUser, meetingId);
             renderParticipantDiv(meetingId);
         });
+        participantDiv.append(button);
     }
-
-    participantDiv.append(button);
+    else {
+        participantDiv.innerHTML += "Fullt"
+    }
 }
 
 //Render full meeting DOM
@@ -55,6 +60,7 @@ export function renderMeetingDom(meeting) {
 
     const participantDiv = document.createElement('div');
     participantDiv.id = "participantDiv";
+    max_participants = m.max_participants;
 
     main.append(img, title, timeloc, description, category, participantDiv);
 }
