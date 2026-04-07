@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: "./tests/e2e",
 
   use: {
-    baseURL: "http://localhost:5173", // eller 4173 om du kör preview
+    baseURL: "http://localhost:4173",
   },
 
   webServer: {
