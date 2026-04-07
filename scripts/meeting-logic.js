@@ -56,7 +56,7 @@ export function isUserSignedUp(participants, currentUser) {
 
 //Format date
 export function formatMeetingDate(dateString) {
-    return new Intl.DateTimeFormat("en-en", {
+    return new Intl.DateTimeFormat("en-GB", {
         dateStyle: "long",
         timeStyle: "short"
     }).format(new Date(dateString));
