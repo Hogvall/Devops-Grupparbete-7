@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeEach, vi } from "vitest";
-import { renderMeetingDom } from "../../scripts/meeting-view.js";
-import { getMeeting, getParticipantData, addParticipantToApi, deleteParticipantFromApi } from "../../scripts/meeting-logic.js";
+import { renderMeetingDom } from "../../src/scripts/meeting-view.js";
+import { getMeeting, getParticipantData, addParticipantToApi, deleteParticipantFromApi } from "../../src/scripts/meeting-logic.js";
 
 // Mock global fetch
 globalThis.fetch = vi.fn();
