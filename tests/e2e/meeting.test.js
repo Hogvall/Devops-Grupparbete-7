@@ -15,7 +15,7 @@ test("User can sign up and unsign using API", async ({ page }) => {
 
   // Find button
   const signUpButton = page.locator('#participantDiv button');
-  await expect(signUpButton).toBeVisible();
+  await expect(signUpButton).toBeVisible(); 
 
   const initialText = await countLocator.innerText();
 
