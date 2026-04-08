@@ -43,4 +43,4 @@ jobs:
         run: npm run test
 
       - name: Debug env
-        run: echo Key exists: ${{ env.VITE_SUPABASE_KEY != '' }}
+        run: echo 'Key exists: ${{ env.VITE_SUPABASE_KEY != '''' }}'
