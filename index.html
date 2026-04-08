@@ -21,7 +21,7 @@
       <h2>Find a meeting</h2>
 
       <div class="filters">
-        <select class="dropdown">
+        <select id="category" class="dropdown">
           <option value="">Category</option>
           <option value="business">Business</option>
           <option value="tech">Tech</option>
@@ -29,7 +29,7 @@
           <option value="education">Education</option>
         </select>
 
-        <select class="dropdown">
+        <select id="location" class="dropdown">
           <option value="">Location</option>
           <option value="malmo">Malmö</option>
           <option value="stockholm">Stockholm</option>
@@ -41,5 +41,8 @@
       </div>
     </section>
   </main>
+  <div id="results"></div>
+
+<script type="module" src="./src/scripts/search.js"></script>
 </body>
 </html>
