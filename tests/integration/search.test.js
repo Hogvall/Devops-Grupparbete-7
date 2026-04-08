@@ -1,6 +1,10 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 
 describe("search integration", () => {
+  beforeEach(() => {
+    vi.resetModules();
+  });
+
   it("should fetch and display meetings", async () => {
     document.body.innerHTML = `
       <select id="category"><option value="">Category</option></select>

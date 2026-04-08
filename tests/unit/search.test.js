@@ -1,6 +1,10 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 
 describe("fetchMeetings", () => {
+  beforeEach(() => {
+    vi.resetModules();
+  });
+
   it("should return meetings from Supabase", async () => {
     global.fetch = vi.fn().mockResolvedValue({
       json: async () => [
