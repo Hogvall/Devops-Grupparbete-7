@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("should display search results", async ({ page }) => {
-  await page.goto("http://localhost:5173");
+  await page.goto("/");
 
   await page.selectOption("#category", "");
   await page.selectOption("#location", "");
