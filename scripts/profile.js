@@ -1,4 +1,4 @@
-
+ 
 // Auth (signup/login/logout) + Create/Edit p rofile via Supabase REST API
 
 // ── Config ────────────────────────────────────────────────────────────────────
