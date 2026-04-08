@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         meeting: resolve(__dirname, "meeting.html"),
+        createMeeting: resolve(__dirname, "create-meeting.html"),
         profile: resolve(__dirname, "profile.html"),
       },
     },

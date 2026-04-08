@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/styles/general.css" />
+    <link rel="stylesheet" href="./src/styles/create-meeting.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meeting App | Create Meeting</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>Create Meeting</h2>
+      <form id="create_meeting_form">
+        <label>Title</label>
+        <input type="text" name="title" required />
+
+        <label>Description</label>
+        <textarea name="description"></textarea>
+
+        <label>Category</label>
+        <select id="category" name="category_id" required>
+          <option value="">Select category</option>
+        </select>
+
+        <label>Location</label>
+        <input type="text" name="location" required />
+
+        <label>Date and time</label>
+        <input type="datetime-local" name="time" required />
+
+        <label>Image</label>
+        <input type="file" name="image" accept="image/*" />
+
+        <label>Max participants</label>
+        <input type="number" name="max_participants" min="1" required />
+
+        <button type="submit">Create meeting</button>
+      </form>
+      <p id="status_message"></p>
+    </div>
+    <script type="module" src="./src/scripts/create-meeting.js"></script>
+  </body>
+</html>
