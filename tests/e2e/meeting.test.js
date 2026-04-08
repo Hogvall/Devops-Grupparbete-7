@@ -14,7 +14,8 @@ test("User can sign up and unsign using API", async ({ page }) => {
   await expect(countLocator).toContainText("Anmälda:");
 
   // Find button
-  const signUpButton = await page.waitForSelector('#participantDiv button');
+  const signUpButton = page.locator('#participantDiv button');
+  await expect(signUpButton).toHaveText("Anmäl här");
 
   const initialText = await countLocator.innerText();
   const initialCount = Number(initialText.match(/\d+/)[0]);
