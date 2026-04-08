@@ -39,5 +39,16 @@ jobs:
       - name: Run lint
         run: npm run lint
 
+      - name: Debug env
+        run: |
+          echo "Key exists: ${{ env.VITE_SUBABASE_KEY != '' }}"
+
+      - name: Debug raw
+        run: |
+          echo "Value: $VITE_SUPABASE_KEY"
+
+      - name: Print all env vars
+        run: printenv
+
       - name: Run tests
         run: npm run test
