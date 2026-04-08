@@ -1,4 +1,4 @@
-const supabase_token = import.meta.env.VITE_SUBABASE_KEY;
+const supabase_token = import.meta.env.VITE_SUPABASE_KEY;
 const supabase_baseurl = import.meta.env.VITE_SUPABASE_URL;
 const storage_bucket = "meeting_images";
 
