@@ -17,3 +17,37 @@ async function fetchMeetings(category = "", location = "") {
   const data = await response.json();
   return data;
 }
+function displayMeetings(meetings) {
+  const container = document.getElementById("results");
+  container.innerHTML = "";
+
+  if (meetings.length === 0) {
+    container.innerHTML = "<p>No meetings found.</p>";
+    return;
+  }
+
+  meetings.forEach((meeting) => {
+    const card = document.createElement("div");
+    card.className = "meeting-card";
+    card.innerHTML = `
+      <img src="${meeting.image}" alt="${meeting.title}" />
+      <h3>${meeting.title}</h3>
+      <p>${meeting.location}</p>
+      <p>${meeting.time}</p>
+      <a href="meeting.html?id=${meeting.id}">View meeting</a>
+    `;
+    container.appendChild(card);
+  });
+}
+async function handleSearch() {
+  const category = document.getElementById("category").value;
+  const location = document.getElementById("location").value;
+  const meetings = await fetchMeetings(category, location);
+  displayMeetings(meetings);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBtn = document.querySelector(".search-btn");
+  searchBtn.addEventListener("click", handleSearch);
+  handleSearch();
+});
