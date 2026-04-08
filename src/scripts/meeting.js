@@ -6,7 +6,7 @@ export async function renderMeeting() {
     const meetingId = new URLSearchParams(window.location.search).get('id');
     const meeting = await getMeeting(meetingId);
 
-    renderMeetingDom(meeting);
+    renderMeetingDom(meeting); 
     renderParticipantDiv(meetingId);
 }
 
