@@ -10,7 +10,7 @@ jobs:
   lint-and-tests:
     runs-on: ubuntu-latest
     env:
-      VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
+      VITE_SUBABASE_KEY: ${{ secrets.VITE_SUBABASE_KEY }}
 
     strategy:
       matrix:
@@ -41,7 +41,10 @@ jobs:
 
       - name: Debug env
         run: |
-          echo "Key exists: ${{ env.VITE_SUPABASE_KEY != '' }}"
+          echo "Key exists: ${{ env.VITE_SUBABASE_KEY != '' }}"
+
+      - name: Debug raw
+        run: echo "Value: $VITE_SUPABASE_KEY"
 
       - name: Run tests
         run: npm run test
