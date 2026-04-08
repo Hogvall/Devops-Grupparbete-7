@@ -3,8 +3,6 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   pull_request_target:
     branches: [ "main" ]
 
@@ -14,10 +12,6 @@ permissions:
 
 jobs:
   lint-and-tests:
-    if: |
-      (github.event_name == 'push') ||
-      (github.event_name == 'pull_request' && github.event.action != 'opened') ||
-      (github.event_name == 'pull_request_target')
     runs-on: ubuntu-latest
     env:
       VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
