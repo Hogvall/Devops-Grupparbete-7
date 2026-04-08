@@ -35,8 +35,6 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Build project
-        env:
-          VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
         run: npm run build
 
       - name: Run lint
@@ -44,3 +42,6 @@ jobs:
 
       - name: Run tests
         run: npm run test
+
+      - name: Debug env
+        run: echo "Key exists: ${{ env.VITE_SUPABASE_KEY != '' }}"
