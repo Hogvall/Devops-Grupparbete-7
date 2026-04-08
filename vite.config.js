@@ -5,7 +5,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        meeting: 'meeting.html'
+        meeting: 'meeting.html',
+        createMeeting: 'create-meeting.html'
       }
     }
   }
