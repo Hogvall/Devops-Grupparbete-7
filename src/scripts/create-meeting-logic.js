@@ -12,7 +12,7 @@ export const CATEGORIES = [
 ];
 
 export async function uploadImage(file) {
-    const filename = `${Date.now()}_${file.name}`;
+    const filename = Date.now() + "_" + file.name.replace(/[^a-zA-Z0-9.]/g, "_");
     const response = await fetch(
         `${supabase_baseurl}/storage/v1/object/${storage_bucket}/${filename}`,
         {
