@@ -9,20 +9,22 @@ let max_participants = "";
 export async function renderParticipantDiv(meetingId) {
     const participants = await getParticipantData(meetingId);
     const participantDiv = document.getElementById('participantDiv');
-    participantDiv.innerHTML = `<div>Anmälda: ${participants.length} / ${max_participants}</div>`;
+    participantDiv.classList.remove("full");
+    participantDiv.innerHTML = `<div>Registered participants: ${participants.length} / ${max_participants}</div>`;
 
     const button = document.createElement('button');
     const signedUp = isUserSignedUp(participants, currentUser);
 
     if (signedUp) {
-        button.textContent = "Avanmäl här";
+        button.textContent = "Cancel";
+        button.classList.add("cancel");
         button.addEventListener("click", async () => {
             await deleteParticipantFromApi(currentUser, meetingId);
             renderParticipantDiv(meetingId);
         });
         participantDiv.append(button);
     } else if (participants.length < max_participants) {
-        button.textContent = "Anmäl här";
+        button.textContent = "Sign up";
         button.addEventListener("click", async () => {
             await addParticipantToApi(currentUser, meetingId);
             renderParticipantDiv(meetingId);
@@ -30,7 +32,8 @@ export async function renderParticipantDiv(meetingId) {
         participantDiv.append(button);
     }
     else {
-        participantDiv.innerHTML += "Fullt"
+        participantDiv.classList.add("full");
+        participantDiv.innerHTML += "Full";
     }
 }
 

@@ -1,4 +1,4 @@
-const supabase_token = import.meta.env.VITE_SUBABASE_KEY;
+const supabase_token = "sb_publishable_RQEs3xlyjHfIs2X3Ql6jbQ_KsKkQZze";
 const supabase_baseurl = "https://wufgfgadhvprxdkcducx.supabase.co";
 
 //Fetch a meeting
