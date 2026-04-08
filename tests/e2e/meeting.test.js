@@ -24,7 +24,7 @@ test("User can sign up and unsign using API", async ({ page }) => {
 
   // Wait for DOM to update
   await expect(countLocator).toContainText(`Anmälda:`);
-  await expect(countLocator).not.toContainText(`Anmälda: ${initialCount} /`);
+  await expect(countLocator).toContainText("Anmälda: " + (initialCount + 1) + " /");
 
   // Click again
   const updatedButton = await page.waitForSelector('#participantDiv button');
