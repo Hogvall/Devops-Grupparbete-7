@@ -48,7 +48,7 @@ jobs:
           echo "Value: $VITE_SUPABASE_KEY"
 
       - name: Print all env vars
-          run: printenv
+        run: printenv
 
       - name: Run tests
         run: npm run test
