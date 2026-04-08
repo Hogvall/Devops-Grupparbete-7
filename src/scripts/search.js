@@ -51,3 +51,4 @@ document.addEventListener("DOMContentLoaded", () => {
   searchBtn.addEventListener("click", handleSearch);
   handleSearch();
 });
+export { fetchMeetings, displayMeetings, handleSearch };
