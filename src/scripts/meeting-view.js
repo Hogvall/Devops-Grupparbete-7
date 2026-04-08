@@ -9,6 +9,7 @@ let max_participants = "";
 export async function renderParticipantDiv(meetingId) {
     const participants = await getParticipantData(meetingId);
     const participantDiv = document.getElementById('participantDiv');
+    participantDiv.classList.remove("full");
     participantDiv.innerHTML = `<div>Registered participants: ${participants.length} / ${max_participants}</div>`;
 
     const button = document.createElement('button');
