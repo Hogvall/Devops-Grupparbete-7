@@ -13,6 +13,7 @@ describe("search integration", () => {
     `;
 
     global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
       json: async () => [
         { id: 1, title: "React Meetup", location: "Stockholm", time: "2026-05-20", image: "" },
       ],
