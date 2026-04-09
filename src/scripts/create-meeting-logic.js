@@ -8,6 +8,8 @@ export const CATEGORIES = [
     { id: 3, name: "Music & Arts" },
     { id: 4, name: "Food & Drink" },
     { id: 5, name: "Education" },
+    { id: 7, name: "Games" },
+    { id: 8, name: "Casual Hangout" },
     { id: 6, name: "Other" },
 ];
 

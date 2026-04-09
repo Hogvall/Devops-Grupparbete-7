@@ -1,3 +1,5 @@
+import { CATEGORIES } from "./create-meeting-logic.js";
+
 const SUPABASE_URL = "https://wufgfgadhvprxdkcducx.supabase.co";
 const SUPABASE_KEY = "sb_publishable_RQEs3xlyjHfIs2X3Ql6jbQ_KsKkQZze";
 
@@ -56,7 +58,18 @@ async function handleSearch() {
   displayMeetings(meetings);
 }
 
+function renderCategoryOptions() {
+  const select = document.getElementById("category");
+  CATEGORIES.forEach(cat => {
+    const option = document.createElement("option");
+    option.value = cat.id;
+    option.textContent = cat.name;
+    select.appendChild(option);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  renderCategoryOptions();
   const searchBtn = document.querySelector(".search-btn");
   searchBtn.addEventListener("click", handleSearch);
   handleSearch();
