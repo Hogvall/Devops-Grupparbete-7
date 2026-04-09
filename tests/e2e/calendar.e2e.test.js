@@ -3,15 +3,17 @@ import { test, expect } from '@playwright/test';
 test('Användare kan logga in och boka ett möte i kalendern', async ({ page }) => {
   await page.goto('/login.html');
 
-
-  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(1500);
 
   await page.fill('#email', 'test@example.com'); 
   await page.fill('#password', '123');
-  await page.click('button[type="submit"]');
+  
+  await Promise.all([
+    page.waitForNavigation(),
+    page.click('button[type="submit"]')
+  ]);
 
-
-  await page.waitForSelector('#event-title', { timeout: 15000 });
+  await page.waitForSelector('#event-title');
 
   await page.fill('#event-title', 'DevOps Redovisning');
   await page.fill('#event-time', '2026-04-10T08:00');
