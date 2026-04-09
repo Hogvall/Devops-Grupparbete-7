@@ -3,23 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mötesappen</title>
+  <title>Meeting App – Explore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./src/styles/general.css" />
 </head>
-
 <body>
-  <header class="header">
-    <h1 class="logo">Mötesappen</h1>
-
-    <div class="header-right">
-      <img src="src/img/user.png" alt="Profile" class="profile-icon" />
-    </div>
+  <header class="site_header">
+    <a href="/index.html" class="site_logo">möt<span>es</span>appen</a>
+    <nav class="site_nav">
+      <a href="/index.html" class="nav_link active">Explore</a>
+      <a href="/create-meeting.html" class="nav_link">Create Meeting</a>
+      <a href="/calendar.html" class="nav_link">Calendar</a>
+    </nav>
+    <a href="/profile.html" class="nav_profile_link">
+      <img src="src/img/user.png" alt="Profile" class="profile_icon" />
+    </a>
   </header>
 
-  <main class="main-content">
-    <section class="search-section">
-      <h2>Find a meeting</h2>
+  <main class="page_wrapper">
+    <div class="page_heading">
+      <h1>Explore meetings</h1>
+      <p>Find and sign up for meetings near you.</p>
+    </div>
 
+    <section class="search_section">
+      <h2>Filter</h2>
       <div class="filters">
         <select id="category" class="dropdown">
           <option value="">Category</option>
@@ -40,9 +50,10 @@
         <button class="search-btn">Search</button>
       </div>
     </section>
-  </main>
-  <div id="results"></div>
 
-<script type="module" src="./src/scripts/search.js"></script>
+    <div id="results"></div>
+  </main>
+
+  <script type="module" src="./src/scripts/search.js"></script>
 </body>
 </html>

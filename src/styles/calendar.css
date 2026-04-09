@@ -1,0 +1,100 @@
+.calendar_page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+
+.create_event_card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.create_event_card h2 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.event_inputs {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.event_inputs input {
+  flex: 1;
+  min-width: 160px;
+}
+
+#create-event-btn {
+  padding: 0.65rem 1.25rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.02em;
+}
+
+#create-event-btn:hover {
+  background: var(--accent_hover);
+}
+
+#create-event-btn:active {
+  transform: scale(0.97);
+}
+
+.events_section {
+  margin-top: 0.5rem;
+}
+
+.events_section_label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.event-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.event-list li {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.event-list li:hover {
+  border-color: var(--accent);
+  transform: translateX(3px);
+}
+
+@media (max-width: 640px) {
+  .calendar_page {
+    padding: 2rem 1.25rem 4rem;
+  }
+}

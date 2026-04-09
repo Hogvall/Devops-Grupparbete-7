@@ -2,42 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meeting App – Create Meeting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./src/styles/general.css" />
     <link rel="stylesheet" href="./src/styles/create-meeting.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meeting App | Create Meeting</title>
   </head>
   <body>
-    <div id="app">
-      <h2>Create Meeting</h2>
-      <form id="create_meeting_form">
-        <label>Title</label>
-        <input type="text" name="title" required />
+    <header class="site_header">
+      <a href="/index.html" class="site_logo">möt<span>es</span>appen</a>
+      <nav class="site_nav">
+        <a href="/index.html" class="nav_link">Explore</a>
+        <a href="/create-meeting.html" class="nav_link active">Create Meeting</a>
+        <a href="/calendar.html" class="nav_link">Calendar</a>
+      </nav>
+      <a href="/profile.html" class="nav_profile_link">
+        <img src="src/img/user.png" alt="Profile" class="profile_icon" />
+      </a>
+    </header>
 
-        <label>Description</label>
-        <textarea name="description"></textarea>
+    <main class="create_page">
+      <div class="page_heading">
+        <h1>Create meeting</h1>
+        <p>Fill in the details for your new meeting.</p>
+      </div>
 
-        <label>Category</label>
-        <select id="category" name="category_id" required>
-          <option value="">Select category</option>
-        </select>
+      <div class="form_card">
+        <h2>Create Meeting</h2>
+        <form id="create_meeting_form">
+          <label>Title</label>
+          <input type="text" name="title" required />
 
-        <label>Location</label>
-        <input type="text" name="location" required />
+          <label>Description</label>
+          <textarea name="description"></textarea>
 
-        <label>Date and time</label>
-        <input type="datetime-local" name="time" required />
+          <label>Category</label>
+          <select id="category" name="category_id" required>
+            <option value="">Select category</option>
+          </select>
 
-        <label>Image</label>
-        <input type="file" name="image" accept="image/*" />
+          <label>Location</label>
+          <input type="text" name="location" required />
 
-        <label>Max participants</label>
-        <input type="number" name="max_participants" min="1" required />
+          <label>Date and time</label>
+          <input type="datetime-local" name="time" required />
 
-        <button type="submit">Create meeting</button>
-      </form>
-      <p id="status_message"></p>
-    </div>
+          <label>Image</label>
+          <input type="file" name="image" accept="image/*" />
+
+          <label>Max participants</label>
+          <input type="number" name="max_participants" min="1" required />
+
+          <button type="submit">Create meeting</button>
+        </form>
+        <p id="status_message"></p>
+      </div>
+    </main>
+
     <script type="module" src="./src/scripts/create-meeting.js"></script>
   </body>
 </html>
