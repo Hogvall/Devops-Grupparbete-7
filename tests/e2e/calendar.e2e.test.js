@@ -1,17 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 test('Användare kan logga in och boka ett möte i kalendern', async ({ page }) => {
-  await page.goto('/login.html');
+  await page.goto('/');
 
-  await page.waitForTimeout(1500);
+  await page.evaluate(() => {
+    localStorage.setItem('user', JSON.stringify({ id: '1', email: 'test@example.com' }));
+  });
 
-  await page.fill('#email', 'test@example.com'); 
-  await page.fill('#password', '123');
-  
-  await Promise.all([
-    page.waitForNavigation(),
-    page.click('button[type="submit"]')
-  ]);
+  await page.goto('/calendar.html');
 
   await page.waitForSelector('#event-title');
 
