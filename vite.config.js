@@ -12,6 +12,8 @@ export default defineConfig({
         meeting: resolve(__dirname, "meeting.html"),
         createMeeting: resolve(__dirname, "create-meeting.html"),
         profile: resolve(__dirname, "profile.html"),
+        login: resolve(__dirname, "login.html"),
+        calendar: resolve(__dirname, "calendar.html")
       },
     },
   },
