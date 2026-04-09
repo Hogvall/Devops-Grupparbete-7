@@ -7,6 +7,7 @@ describe("fetchMeetings", () => {
 
   it("should return meetings from Supabase", async () => {
     global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
       json: async () => [
         { id: 1, title: "React Meetup", location: "Stockholm" },
       ],

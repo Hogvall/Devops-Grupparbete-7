@@ -7,16 +7,25 @@ async function fetchMeetings(category = "", location = "") {
   if (category) url += `&category_id=eq.${category}`;
   if (location) url += `&location=eq.${location}`;
 
-  const response = await fetch(url, {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-    },
-  });
+  try {
+    const response = await fetch(url, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+      },
+    });
 
-  const data = await response.json();
-  return data;
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Could not fetch meetings:", error);
+    return [];
+  }
 }
+
 function displayMeetings(meetings) {
   const container = document.getElementById("results");
   container.innerHTML = "";
@@ -39,6 +48,7 @@ function displayMeetings(meetings) {
     container.appendChild(card);
   });
 }
+
 async function handleSearch() {
   const category = document.getElementById("category").value;
   const location = document.getElementById("location").value;
@@ -51,4 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
   searchBtn.addEventListener("click", handleSearch);
   handleSearch();
 });
+
 export { fetchMeetings, displayMeetings, handleSearch };
