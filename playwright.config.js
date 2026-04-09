@@ -12,4 +12,11 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:4173",
   },
+    webServer: {
+    command: 'npm run dev',       
+    reuseExistingServer: !process.env.CI,
+    timeout: 120 * 1000,
+  },
 });
+
+

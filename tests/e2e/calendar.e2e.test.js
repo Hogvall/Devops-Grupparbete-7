@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('Användare kan logga in och boka ett möte i kalendern', async ({ page }) => {
 
-  await page.goto('http://localhost:5173/login.html'); 
+  await page.goto('/login.html');
 
   await page.fill('#email', 'test@example.com'); 
   await page.fill('#password', '123');
