@@ -20,7 +20,7 @@ export async function fetchEvents() {
 
 export async function createEvent(title, startTime) {
   const user = getUser();
-  if (!user) throw new Error("Måste vara inloggad");
+  if (!user) throw new Error("Must be signed in");
   
   const { data, error } = await supabase
     .from('meetings')

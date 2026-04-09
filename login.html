@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In – Meeting App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles/general.css" />
+  <link rel="stylesheet" href="./src/styles/login.css" />
 </head>
 <body>
-  <h1>Logga in</h1>
-  <form id="login-form">
-    <input type="email" id="email" placeholder="test@example.com" required />
-    <input type="password" id="password" placeholder="Lösenord (123)" required />
-    <div id="error-msg" style="display:none; color:red;"></div>
-    <button type="submit">Logga in</button>
-  </form>
+  <header class="site_header">
+    <a href="/index.html" class="site_logo">möt<span>es</span>appen</a>
+    <nav class="site_nav">
+      <a href="/index.html" class="nav_link">Explore</a>
+      <a href="/create-meeting.html" class="nav_link">Create Meeting</a>
+      <a href="/calendar.html" class="nav_link">Calendar</a>
+    </nav>
+    <a href="/profile.html" class="nav_profile_link">
+      <img src="src/img/user.png" alt="Profile" class="profile_icon" />
+    </a>
+  </header>
+
+  <div class="login_page">
+    <div class="login_card">
+      <h1>Sign in</h1>
+      <p class="subtitle">Welcome back.</p>
+
+      <form id="login-form">
+        <input type="email" id="email" placeholder="test@example.com" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <div id="error-msg"></div>
+        <button type="submit" class="login_submit">Sign in</button>
+      </form>
+
+      <div class="login_footer">
+        No account? <a href="/profile.html">Create one here</a>
+      </div>
+    </div>
+  </div>
 
   <script type="module">
     import { setupLogin } from './src/scripts/login.js';

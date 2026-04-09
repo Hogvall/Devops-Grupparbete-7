@@ -11,7 +11,7 @@ export function setupLogin(formElement) {
       localStorage.setItem('user', JSON.stringify(hardcodedUser));
       window.location.href = '/Calendar.html'; 
     } else {
-      errorMsg.textContent = "Felaktiga inloggningsuppgifter";
+      errorMsg.textContent = "Invalid credentials";
       errorMsg.style.display = 'block';
     }
   });

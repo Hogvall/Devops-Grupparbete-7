@@ -75,7 +75,7 @@ export async function signUp(email, password) {
   });
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data.msg || data.error_description || "Registrering misslyckades.");
+  if (!res.ok) throw new Error(data.msg || data.error_description || "Registration failed.");
   return data;
 }
 
@@ -91,7 +91,7 @@ export async function signIn(email, password) {
   });
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data.error_description || data.msg || "Inloggning misslyckades.");
+  if (!res.ok) throw new Error(data.error_description || data.msg || "Sign in failed.");
   return data;
 }
 
@@ -114,10 +114,10 @@ export async function signOut(accessToken) {
  */
 export function validateProfile({ fname, lname, birthdate, location }) {
   const errors = {};
-  if (!fname || fname.trim() === "") errors.fname = "Förnamn krävs.";
-  if (!lname || lname.trim() === "") errors.lname = "Efternamn krävs.";
-  if (!birthdate) errors.birthdate = "Födelsedag krävs.";
-  if (!location || location.trim() === "") errors.location = "Plats krävs.";
+  if (!fname || fname.trim() === "") errors.fname = "First name is required.";
+  if (!lname || lname.trim() === "") errors.lname = "Last name is required.";
+  if (!birthdate) errors.birthdate = "Date of birth is required.";
+  if (!location || location.trim() === "") errors.location = "Location is required.";
   return { valid: Object.keys(errors).length === 0, errors };
 }
 
@@ -130,7 +130,7 @@ export async function fetchProfile(userId, accessToken) {
     headers: getAuthHeaders(accessToken, { Accept: "application/json" }),
   });
 
-  if (!res.ok) throw new Error(`Kunde inte hämta profil: ${res.status}`);
+  if (!res.ok) throw new Error(`Could not fetch profile: ${res.status}`);
   const data = await res.json();
   return data.length > 0 ? data[0] : null;
 }
@@ -147,7 +147,7 @@ export async function createProfile(userId, profile, accessToken) {
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `Kunde inte skapa profil: ${res.status}`);
+    throw new Error(err.message || `Could not create profile: ${res.status}`);
   }
 
   const data = await res.json();
@@ -166,7 +166,7 @@ export async function updateProfile(userId, profile, accessToken) {
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `Kunde inte uppdatera profil: ${res.status}`);
+    throw new Error(err.message || `Could not update profile: ${res.status}`);
   }
 
   const data = await res.json();
@@ -284,11 +284,11 @@ async function init() {
     const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value;
 
-    if (!email) { showFieldErrors({ loginEmail: "E-post krävs." }); return; }
-    if (!password) { showFieldErrors({ loginPassword: "Lösenord krävs." }); return; }
+    if (!email) { showFieldErrors({ loginEmail: "Email is required." }); return; }
+    if (!password) { showFieldErrors({ loginPassword: "Password is required." }); return; }
 
     const btn = document.getElementById("loginBtn");
-    btn.disabled = true; btn.textContent = "Loggar in...";
+    btn.disabled = true; btn.textContent = "Signing in...";
 
     try {
       const session = await signIn(email, password);
@@ -297,7 +297,7 @@ async function init() {
     } catch (err) {
       showToast(err.message, "error");
     } finally {
-      btn.disabled = false; btn.textContent = "Logga in";
+      btn.disabled = false; btn.textContent = "Sign in";
     }
   });
 
@@ -307,11 +307,11 @@ async function init() {
     const email = document.getElementById("signupEmail").value.trim();
     const password = document.getElementById("signupPassword").value;
 
-    if (!email) { showFieldErrors({ signupEmail: "E-post krävs." }); return; }
-    if (password.length < 6) { showFieldErrors({ signupPassword: "Lösenordet måste vara minst 6 tecken." }); return; }
+    if (!email) { showFieldErrors({ signupEmail: "Email is required." }); return; }
+    if (password.length < 6) { showFieldErrors({ signupPassword: "Password must be at least 6 characters." }); return; }
 
     const btn = document.getElementById("signupBtn");
-    btn.disabled = true; btn.textContent = "Skapar konto...";
+    btn.disabled = true; btn.textContent = "Creating account...";
 
     try {
       const result = await signUp(email, password);
@@ -320,12 +320,12 @@ async function init() {
         saveSession(result);
         await loadProfileSection(result);
       } else {
-        showToast("Konto skapat! Kontrollera din e-post för att bekräfta.", "success");
+        showToast("Account created! Check your email to confirm.", "success");
       }
     } catch (err) {
       showToast(err.message, "error");
     } finally {
-      btn.disabled = false; btn.textContent = "Skapa konto";
+      btn.disabled = false; btn.textContent = "Create account";
     }
   });
 
@@ -335,7 +335,7 @@ async function init() {
     if (session?.access_token) await signOut(session.access_token).catch(() => {});
     clearSession();
     showAuth();
-    showToast("Du har loggats ut.", "success");
+    showToast("You have been signed out.", "success");
   });
 
   // ── Check for existing session on load ──
@@ -374,12 +374,12 @@ async function loadProfileSection(session) {
 
   if (existingProfile) {
     isEditMode = true;
-    pageTitle.textContent = "Redigera profil";
-    statusText.textContent = "Redigerar befintlig profil";
+    pageTitle.textContent = "Edit profile";
+    statusText.textContent = "Editing existing profile";
     statusBadge.classList.add("existing");
     populateForm(existingProfile);
   } else {
-    statusText.textContent = "Skapar ny profil";
+    statusText.textContent = "Creating new profile";
   }
 
   // ── Avatar URL input ──
@@ -416,24 +416,24 @@ async function loadProfileSection(session) {
     if (!valid) { showFieldErrors(errors); return; }
 
     const saveBtn = document.getElementById("saveBtn");
-    saveBtn.disabled = true; saveBtn.textContent = "Sparar...";
+    saveBtn.disabled = true; saveBtn.textContent = "Saving...";
 
     try {
       if (isEditMode) {
         existingProfile = await updateProfile(userId, profileData, accessToken);
-        showToast("Profilen uppdaterades! ✓", "success");
+        showToast("Profile updated! ✓", "success");
       } else {
         existingProfile = await createProfile(userId, profileData, accessToken);
         isEditMode = true;
-        pageTitle.textContent = "Redigera profil";
-        statusText.textContent = "Redigerar befintlig profil";
+        pageTitle.textContent = "Edit profile";
+        statusText.textContent = "Editing existing profile";
         statusBadge.classList.add("existing");
-        showToast("Profilen skapades! ✓", "success");
+        showToast("Profile created! ✓", "success");
       }
     } catch (err) {
-      showToast(err.message || "Något gick fel.", "error");
+      showToast(err.message || "Something went wrong.", "error");
     } finally {
-      saveBtn.disabled = false; saveBtn.textContent = "Spara profil";
+      saveBtn.disabled = false; saveBtn.textContent = "Save profile";
     }
   });
 }

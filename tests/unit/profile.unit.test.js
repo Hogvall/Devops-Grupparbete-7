@@ -29,31 +29,31 @@ describe("validateProfile", () => {
   it("returns error when fname is empty", () => {
     const result = validateProfile({ ...validData, fname: "" });
     expect(result.valid).toBe(false);
-    expect(result.errors.fname).toBe("Förnamn krävs.");
+    expect(result.errors.fname).toBe("First name is required.");
   });
 
   it("returns error when fname is only whitespace", () => {
     const result = validateProfile({ ...validData, fname: "   " });
     expect(result.valid).toBe(false);
-    expect(result.errors.fname).toBe("Förnamn krävs.");
+    expect(result.errors.fname).toBe("First name is required.");
   });
 
   it("returns error when lname is empty", () => {
     const result = validateProfile({ ...validData, lname: "" });
     expect(result.valid).toBe(false);
-    expect(result.errors.lname).toBe("Efternamn krävs.");
+    expect(result.errors.lname).toBe("Last name is required.");
   });
 
   it("returns error when birthdate is missing", () => {
     const result = validateProfile({ ...validData, birthdate: "" });
     expect(result.valid).toBe(false);
-    expect(result.errors.birthdate).toBe("Födelsedag krävs.");
+    expect(result.errors.birthdate).toBe("Date of birth is required.");
   });
 
   it("returns error when location is empty", () => {
     const result = validateProfile({ ...validData, location: "" });
     expect(result.valid).toBe(false);
-    expect(result.errors.location).toBe("Plats krävs.");
+    expect(result.errors.location).toBe("Location is required.");
   });
 
   it("returns multiple errors when several fields are missing", () => {

@@ -1,100 +1,137 @@
-/* ===== Meeting Page Layout ===== */
+.meeting_page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 6rem;
+}
 
 #app {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 24px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
 }
 
-/* Meeting image */
-#app img {
+#app > img {
   width: 100%;
-  height: 260px;
+  height: 320px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  display: block;
+  background: var(--cream_dark);
 }
 
-/* Title */
-#app h3 {
-  font-size: 1.8rem;
-  margin-bottom: 12px;
-  font-weight: 700;
+#app > h3 {
+  font-size: 1.9rem;
+  font-family: "DM Serif Display", serif;
+  padding: 1.75rem 2rem 0.5rem;
+  color: var(--ink);
 }
 
-/* Time + location */
 #app > div:nth-of-type(1) {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding: 0 2rem 1rem;
+  line-height: 1.5;
 }
 
-/* Description */
-#app p {
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #333;
+#app > p {
+  font-size: 0.975rem;
+  line-height: 1.75;
+  color: var(--ink);
+  padding: 0 2rem 1.25rem;
 }
 
-/* Category */
 #app > div:nth-of-type(2) {
-  font-size: 0.95rem;
+  display: inline-block;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #0077ff;
-  margin-bottom: 24px;
+  color: var(--accent);
+  background: var(--accent_light);
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  margin: 0 2rem 1.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: "DM Sans", sans-serif;
 }
-
-/* ===== Participant Section ===== */
 
 #participantDiv {
-  padding: 16px;
-  background: #f3f7ff;
-  border: 1px solid #d8e4ff;
-  border-radius: 10px;
-  margin-top: 20px;
-  font-size: 1rem;
+  margin: 0 2rem 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
+  font-size: 0.95rem;
 }
 
-/* Buttons inside participantDiv */
 #participantDiv button {
-  padding: 10px 16px;
+  padding: 0.65rem 1.4rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
+  font-family: "DM Sans", sans-serif;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
   width: fit-content;
-  transition: background 0.2s ease;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
 }
 
-/* Sign up */
+#participantDiv button:active {
+  transform: scale(0.97);
+}
+
 #participantDiv button:not(.cancel) {
-  background: #0077ff;
-  color: white;
+  background: var(--accent);
+  color: #fff;
 }
 
 #participantDiv button:not(.cancel):hover {
-  background: #005fcc;
+  background: var(--accent_hover);
 }
 
-/* Cancel sign-up */
 #participantDiv button.cancel {
-  background: #ff4d4d;
-  color: white;
+  background: transparent;
+  border: 1.5px solid var(--error);
+  color: var(--error);
 }
 
 #participantDiv button.cancel:hover {
-  background: #d93636;
+  background: var(--error);
+  color: #fff;
 }
 
-/* Full message */
 #participantDiv.full {
-  color: #d93636;
-  font-weight: 700;
+  color: var(--error);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .meeting_page {
+    padding: 1.5rem 1rem 4rem;
+  }
+
+  #app > h3 {
+    font-size: 1.5rem;
+    padding: 1.25rem 1.25rem 0.4rem;
+  }
+
+  #app > div:nth-of-type(1),
+  #app > p {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  #app > div:nth-of-type(2) {
+    margin-left: 1.25rem;
+  }
+
+  #app > img {
+    height: 220px;
+  }
+
+  #participantDiv {
+    margin: 0 1.25rem 1.5rem;
+  }
 }

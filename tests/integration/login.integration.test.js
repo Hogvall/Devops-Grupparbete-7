@@ -19,7 +19,7 @@ describe('Login Integration', () => {
     form.dispatchEvent(new Event('submit'));
     
     const errorMsg = document.getElementById('error-msg');
-    expect(errorMsg.textContent).toBe('Felaktiga inloggningsuppgifter');
+    expect(errorMsg.textContent).toBe('Invalid credentials');
     expect(errorMsg.style.display).toBe('block');
   });
 });

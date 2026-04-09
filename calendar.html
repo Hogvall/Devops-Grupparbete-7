@@ -1,20 +1,48 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Kalender</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar – Meeting App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles/general.css" />
+  <link rel="stylesheet" href="./src/styles/calendar.css" />
 </head>
 <body>
-  <h1>Din Kalender</h1>
-  
-  <div>
-    <input type="text" id="event-title" placeholder="Mötesnamn" />
-    <input type="datetime-local" id="event-time" />
-    <button id="create-event-btn">Skapa Möte</button>
-  </div>
+  <header class="site_header">
+    <a href="/index.html" class="site_logo">möt<span>es</span>appen</a>
+    <nav class="site_nav">
+      <a href="/index.html" class="nav_link">Explore</a>
+      <a href="/create-meeting.html" class="nav_link">Create Meeting</a>
+      <a href="/calendar.html" class="nav_link active">Calendar</a>
+    </nav>
+    <a href="/profile.html" class="nav_profile_link">
+      <img src="src/img/user.png" alt="Profile" class="profile_icon" />
+    </a>
+  </header>
 
-  <h2>Dina Möten:</h2>
-  <ul id="event-list" class="event-list"></ul>
+  <main class="calendar_page">
+    <div class="page_heading">
+      <h1>Your calendar</h1>
+      <p>Your upcoming meetings in one place.</p>
+    </div>
+
+    <div class="create_event_card">
+      <h2>New meeting</h2>
+      <div class="event_inputs">
+        <input type="text" id="event-title" placeholder="Meeting name" />
+        <input type="datetime-local" id="event-time" />
+        <button id="create-event-btn">Create meeting</button>
+      </div>
+    </div>
+
+    <div class="events_section">
+      <p class="events_section_label">Your meetings</p>
+      <ul id="event-list" class="event-list"></ul>
+    </div>
+  </main>
 
   <script type="module">
 
