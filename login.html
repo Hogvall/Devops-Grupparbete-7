@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <h1>Logga in</h1>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="test@example.com" required />
+    <input type="password" id="password" placeholder="Lösenord (123)" required />
+    <div id="error-msg" style="display:none; color:red;"></div>
+    <button type="submit">Logga in</button>
+  </form>
+
+  <script type="module">
+    import { setupLogin } from './src/scripts/login.js';
+    const form = document.getElementById('login-form');
+    setupLogin(form);
+  </script>
+</body>
+</html>

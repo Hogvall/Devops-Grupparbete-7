@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalender</title>
+</head>
+<body>
+  <h1>Din Kalender</h1>
+  
+  <div>
+    <input type="text" id="event-title" placeholder="Mötesnamn" />
+    <input type="datetime-local" id="event-time" />
+    <button id="create-event-btn">Skapa Möte</button>
+  </div>
+
+  <h2>Dina Möten:</h2>
+  <ul id="event-list" class="event-list"></ul>
+
+  <script type="module">
+
+    import { fetchEvents, createEvent } from './src/scripts/calendar.js';
+
+    async function loadEvents() {
+      const events = await fetchEvents();
+      const list = document.getElementById('event-list');
+      list.innerHTML = '';
+      events.forEach(ev => {
+        const li = document.createElement('li');
+        li.textContent = `${ev.title} - ${ev.start_time}`;
+        list.appendChild(li);
+      });
+    }
+
+    document.getElementById('create-event-btn').addEventListener('click', async () => {
+      const title = document.getElementById('event-title').value;
+      const time = document.getElementById('event-time').value;
+      await createEvent(title, time);
+      loadEvents();
+    });
+
+    loadEvents();
+  </script>
+</body>
+</html>
