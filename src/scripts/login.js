@@ -9,7 +9,7 @@ export function setupLogin(formElement) {
     if (email === 'test@example.com' && password === '123') {
       const hardcodedUser = { id: '1', email: 'test@example.com' };
       localStorage.setItem('user', JSON.stringify(hardcodedUser));
-      window.location.href = '/calendar.html'; 
+      window.location.href = '/Calendar.html'; 
     } else {
       errorMsg.textContent = "Felaktiga inloggningsuppgifter";
       errorMsg.style.display = 'block';
