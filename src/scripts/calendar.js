@@ -5,28 +5,46 @@ export async function fetchEvents() {
   const user = getCurrentUser();
   if (!user) return [];
 
-  const { data, error } = await supabase
-    .from('meeting_participant')
-    .select('meeting_id, meetings(*)')
-    .eq('user_id', user.id);
+  const [participantRes, organizerRes] = await Promise.all([
+    supabase.from('meeting_participant').select('meeting_id, meetings(*)').eq('user_id', user.id),
+    supabase.from('meeting_organizer').select('meeting_id, meetings(*)').eq('user_id', user.id),
+  ]);
 
-  if (error) 
-    console.error("Error:", error);
+  if (participantRes.error) console.error("Participant fetch error:", participantRes.error);
+  if (organizerRes.error) console.error("Organizer fetch error:", organizerRes.error);
 
-  return (data || []).map(row => row.meetings).filter(Boolean);
+  const participantMeetings = (participantRes.data || []).map(r => r.meetings).filter(Boolean);
+  const organizerMeetings = (organizerRes.data || []).map(r => r.meetings).filter(Boolean);
+
+  const seen = new Set();
+  return [...participantMeetings, ...organizerMeetings].filter(m => {
+    if (seen.has(m.id)) return false;
+    seen.add(m.id);
+    return true;
+  });
 }
 
 export async function createEvent(title, startTime) {
   const user = getCurrentUser();
-  if (!user) 
+  if (!user)
     throw new Error("Must be signed in");
 
   const { data, error } = await supabase
     .from('meetings')
-    .insert([{ title: title, time: startTime }]);
+    .insert([{ title: title, time: startTime }])
+    .select();
 
-  if (error) 
+  if (error)
     throw error;
+
+  const meeting = data?.[0];
+  if (meeting?.id) {
+    const { error: orgError } = await supabase
+      .from('meeting_organizer')
+      .insert([{ user_id: user.id, meeting_id: meeting.id }]);
+    if (orgError)
+      console.error("Could not add organizer:", orgError);
+  }
 
   return data;
 }

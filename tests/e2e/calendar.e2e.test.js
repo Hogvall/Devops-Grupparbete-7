@@ -2,27 +2,40 @@ import { test, expect } from '@playwright/test';
 
 test('Användare kan logga in och boka ett möte i kalendern', async ({ page }) => {
 
-  // Mock meeting_participant GET — returns the meeting the user signed up for
+  // Mock meeting_participant GET — user has no participated meetings
   await page.route('**/rest/v1/meeting_participant*', async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
-      body: JSON.stringify([
-        {
-          meeting_id: '123',
-          meetings: { id: '123', title: 'DevOps Redovisning', time: '2026-04-10T08:00' }
-        }
-      ])
+      body: JSON.stringify([])
     });
   });
 
-  // Mock meetings POST — for createEvent
+  // Mock meeting_organizer — returns the created meeting after creation
+  await page.route('**/rest/v1/meeting_organizer*', async (route) => {
+    if (route.request().method() === 'POST') {
+      await route.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify([{}]) });
+    } else {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify([
+          {
+            meeting_id: '123',
+            meetings: { id: '123', title: 'DevOps Redovisning', time: '2026-04-10T08:00' }
+          }
+        ])
+      });
+    }
+  });
+
+  // Mock meetings POST — for createEvent insert
   await page.route('**/rest/v1/meetings*', async (route) => {
     if (route.request().method() === 'POST') {
       await route.fulfill({
         status: 201,
         contentType: 'application/json',
-        body: JSON.stringify([{ id: '123' }])
+        body: JSON.stringify([{ id: '123', title: 'DevOps Redovisning', time: '2026-04-10T08:00' }])
       });
     } else {
       await route.continue();
