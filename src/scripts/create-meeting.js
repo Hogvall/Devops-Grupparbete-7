@@ -1,7 +1,6 @@
 import { uploadImage, createMeeting, addOrganizer } from "./create-meeting-logic.js";
 import { renderCategoryOptions, showStatusMessage } from "./create-meeting-view.js";
-
-const currentUser = "b2b2b2b2-b2b2-b2b2-b2b2-b2b2b2b2b2b2";
+import { getCurrentUser } from "./utils.js";
 
 renderCategoryOptions();
 
@@ -9,10 +8,16 @@ document.getElementById("create_meeting_form").addEventListener("submit", async 
     e.preventDefault();
     const form = e.target;
 
+    const user = getCurrentUser();
+    if (!user) {
+        showStatusMessage("You have to be logged in to create a meeting.", true);
+        return;
+    }
+
     try {
         let imageUrl = null;
         const imageFile = form.image.files[0];
-        if (imageFile) 
+        if (imageFile)
             imageUrl = await uploadImage(imageFile);
 
         const [meeting] = await createMeeting({
@@ -25,7 +30,7 @@ document.getElementById("create_meeting_form").addEventListener("submit", async 
             max_participants: Number(form.max_participants.value)
         });
 
-        await addOrganizer(currentUser, meeting.id);
+        await addOrganizer(user.id, meeting.id);
 
         showStatusMessage("The meeting has been created.");
         form.reset();
