@@ -19,4 +19,21 @@ describe("fetchMeetings", () => {
     expect(result).toHaveLength(1);
     expect(result[0].title).toBe("React Meetup");
   });
+
+  it("should return locations from Supabase", async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => [
+        { location: "Stockholm" },
+        { location: "Padel Arena" },
+        { location: "Stockholm" },
+      ],
+    });
+
+    const { fetchLocations } = await import("../../src/scripts/search.js");
+    const result = await fetchLocations();
+
+    expect(result).toContain("Stockholm");
+    expect(result).toHaveLength(2);
+  });
 });
