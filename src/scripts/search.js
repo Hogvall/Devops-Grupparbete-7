@@ -28,6 +28,27 @@ async function fetchMeetings(category = "", location = "") {
   }
 }
 
+async function fetchLocations() {
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/meetings?select=location`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return [...new Set(data.map((m) => m.location))];
+  } catch (error) {
+    console.error("Could not fetch locations:", error);
+    return [];
+  }
+}
+
 function displayMeetings(meetings) {
   const container = document.getElementById("results");
   container.innerHTML = "";
@@ -60,7 +81,7 @@ async function handleSearch() {
 
 function renderCategoryOptions() {
   const select = document.getElementById("category");
-  CATEGORIES.forEach(cat => {
+  CATEGORIES.forEach((cat) => {
     const option = document.createElement("option");
     option.value = cat.id;
     option.textContent = cat.name;
@@ -68,11 +89,23 @@ function renderCategoryOptions() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+async function renderLocationOptions() {
+  const select = document.getElementById("location");
+  const locations = await fetchLocations();
+  locations.forEach((location) => {
+    const option = document.createElement("option");
+    option.value = location;
+    option.textContent = location;
+    select.appendChild(option);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
   renderCategoryOptions();
+  await renderLocationOptions();
   const searchBtn = document.querySelector(".search-btn");
   searchBtn.addEventListener("click", handleSearch);
   handleSearch();
 });
 
-export { fetchMeetings, displayMeetings, handleSearch };
+export { fetchMeetings, fetchLocations, displayMeetings, handleSearch };
