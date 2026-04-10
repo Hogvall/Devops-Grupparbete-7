@@ -54,7 +54,7 @@
       list.innerHTML = '';
       events.forEach(ev => {
         const li = document.createElement('li');
-        li.textContent = `${ev.title} - ${ev.start_time}`;
+        li.textContent = `${ev.title} - ${ev.time}`;
         list.appendChild(li);
       });
     }

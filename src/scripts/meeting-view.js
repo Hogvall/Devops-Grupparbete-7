@@ -1,32 +1,40 @@
 import { isUserSignedUp, formatMeetingDate, addParticipantToApi, deleteParticipantFromApi, getParticipantData } from "./meeting-logic.js"
-
-//Mock a logged in user
-const currentUser = "b2b2b2b2-b2b2-b2b2-b2b2-b2b2b2b2b2b2";
+import { getCurrentUser } from "./utils.js";
 
 let max_participants = "";
 
 //Render participant info bit
 export async function renderParticipantDiv(meetingId) {
+    const user = getCurrentUser();
+    const currentUserId = user?.id ?? null;
+
     const participants = await getParticipantData(meetingId);
     const participantDiv = document.getElementById('participantDiv');
     participantDiv.classList.remove("full");
     participantDiv.innerHTML = `<div>Registered participants: ${participants.length} / ${max_participants}</div>`;
 
+    if (!currentUserId) {
+        const msg = document.createElement('p');
+        msg.textContent = "Login to sign up.";
+        participantDiv.append(msg);
+        return;
+    }
+
     const button = document.createElement('button');
-    const signedUp = isUserSignedUp(participants, currentUser);
+    const signedUp = isUserSignedUp(participants, currentUserId);
 
     if (signedUp) {
         button.textContent = "Cancel";
         button.classList.add("cancel");
         button.addEventListener("click", async () => {
-            await deleteParticipantFromApi(currentUser, meetingId);
+            await deleteParticipantFromApi(currentUserId, meetingId);
             renderParticipantDiv(meetingId);
         });
         participantDiv.append(button);
     } else if (participants.length < max_participants) {
         button.textContent = "Sign up";
         button.addEventListener("click", async () => {
-            await addParticipantToApi(currentUser, meetingId);
+            await addParticipantToApi(currentUserId, meetingId);
             renderParticipantDiv(meetingId);
         });
         participantDiv.append(button);
